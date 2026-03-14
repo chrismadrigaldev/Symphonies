@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dcfor4mwuh6ui"]
+
+[ext_resource type="Texture2D" uid="uid://bepbdlslbqddo" path="res://assets/backgrounds/theatre_scene/parts/seats.png" id="1_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://cpyv4antuglih" path="res://assets/backgrounds/theatre_scene/parts/stage.png" id="2_7jktm"]
+[ext_resource type="Texture2D" uid="uid://c5iei4rolvynt" path="res://assets/sprites/player-sprites/Char_3.png" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://cdpjnegks7hw0" path="res://assets/backgrounds/theatre_scene/parts/side_curtain.png" id="3_ryrav"]
+[ext_resource type="Script" uid="uid://c6xkwtav80v0p" path="res://scripts/player.gd" id="4_7jktm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
+size = Vector2(513.6, 47.199997)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
+size = Vector2(23.25, 46)
+
+[node name="Game" type="Node2D" unique_id=1774356005]
+
+[node name="Stage" type="Node2D" parent="." unique_id=958308967]
+metadata/_edit_lock_ = true
+
+[node name="Seats" type="Sprite2D" parent="Stage" unique_id=941817572]
+position = Vector2(652, 345)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_fc0e3")
+metadata/_edit_lock_ = true
+
+[node name="SideCurtainLeft" type="Sprite2D" parent="Stage" unique_id=1681789088]
+position = Vector2(-1706, 656)
+texture = ExtResource("3_ryrav")
+metadata/_edit_lock_ = true
+
+[node name="SideCurtainRight" type="Sprite2D" parent="Stage" unique_id=396488766]
+position = Vector2(2719, 385)
+texture = ExtResource("3_ryrav")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Stage" unique_id=1608294826]
+position = Vector2(624, 751)
+
+[node name="Stage" type="Sprite2D" parent="Stage/StaticBody2D" unique_id=1937578232]
+scale = Vector2(1.25, 1)
+texture = ExtResource("2_7jktm")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/StaticBody2D" unique_id=1279934682]
+position = Vector2(1.000061, 56.99994)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_7jktm")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1485498965]
+script = ExtResource("4_7jktm")
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player" unique_id=1821948731]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_e2o6t")
+hframes = 18
+vframes = 16
+
+[node name="PlayerCollider" type="CollisionShape2D" parent="Player" unique_id=343845900]
+position = Vector2(-1.5, -4)
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_fc0e3")
