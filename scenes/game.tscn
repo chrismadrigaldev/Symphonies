@@ -3,15 +3,21 @@
 [ext_resource type="Script" uid="uid://di2bbiduef485" path="res://scripts/game.gd" id="1_gee14"]
 [ext_resource type="Script" uid="uid://da8fwrcq47glm" path="res://scripts/camera.gd" id="2_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://bepbdlslbqddo" path="res://assets/backgrounds/theatre_scene/parts/seats.png" id="3_vtaks"]
-[ext_resource type="Script" uid="uid://cv2pa0a7uh38s" path="res://scripts/seats.gd" id="4_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://cdpjnegks7hw0" path="res://assets/backgrounds/theatre_scene/parts/side_curtain.png" id="5_dinhu"]
 [ext_resource type="Texture2D" uid="uid://cpyv4antuglih" path="res://assets/backgrounds/theatre_scene/parts/stage.png" id="6_kvuet"]
 
+[sub_resource type="GDScript" id="GDScript_iywne"]
+script/source = "extends Sprite2D
+
+func _ready() -> void:
+	position = Globals.WINDOW_SIZE * 0.5
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
-size = Vector2(2048, 261.66666)
+size = Vector2(2253, 220)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
-size = Vector2(20, 910)
+size = Vector2(20, 907)
 
 [node name="Game" type="Node2D" unique_id=1774356005]
 script = ExtResource("1_gee14")
@@ -23,51 +29,49 @@ metadata/_edit_lock_ = true
 scroll_scale = Vector2(0.1, 0)
 
 [node name="Seats" type="Sprite2D" parent="Map/BG" unique_id=941817572]
-scale = Vector2(0.65, 0.65)
+position = Vector2(0, -75)
+scale = Vector2(0.8, 0.7)
 texture = ExtResource("3_vtaks")
-script = ExtResource("4_kvpfn")
-metadata/_edit_lock_ = true
+script = SubResource("GDScript_iywne")
 
 [node name="Stage" type="StaticBody2D" parent="Map" unique_id=1608294826]
-position = Vector2(0, 380)
-scale = Vector2(0.9, 0.9)
+position = Vector2(0, 285)
 metadata/_edit_lock_ = true
 
 [node name="StageSprite" type="Sprite2D" parent="Map/Stage" unique_id=1937578232]
+scale = Vector2(1.1, 0.8)
 texture = ExtResource("6_kvuet")
-metadata/_edit_lock_ = true
 
 [node name="StageCollisionRect" type="CollisionShape2D" parent="Map/Stage" unique_id=1279934682]
-position = Vector2(0, 45.833344)
+position = Vector2(0.50001526, 32)
 shape = SubResource("RectangleShape2D_7jktm")
-metadata/_edit_lock_ = true
 
 [node name="StageWalls" type="Node2D" parent="Map" unique_id=829084356]
 metadata/_edit_lock_ = true
 
-[node name="StageWallLeft" type="StaticBody2D" parent="Map/StageWalls" unique_id=1630531480]
-position = Vector2(-930, 48)
+[node name="StageWallLeft" type="StaticBody2D" parent="Map/StageWalls" unique_id=1755735420]
+position = Vector2(-1136, 32)
 
-[node name="SideCurtainLeftSprite" type="Sprite2D" parent="Map/StageWalls/StageWallLeft" unique_id=1681789088]
-position = Vector2(55, -135)
-scale = Vector2(0.6, 0.65)
+[node name="SideCurtainSprite" type="Sprite2D" parent="Map/StageWalls/StageWallLeft" unique_id=1888330428]
+position = Vector2(59, -208)
+scale = Vector2(0.66, 0.69327253)
 texture = ExtResource("5_dinhu")
 
-[node name="StageWallLeftRect" type="CollisionShape2D" parent="Map/StageWalls/StageWallLeft" unique_id=359061357]
-position = Vector2(-1.25, 34.375)
+[node name="StageWallRect" type="CollisionShape2D" parent="Map/StageWalls/StageWallLeft" unique_id=710033963]
+position = Vector2(0, -58.5)
 shape = SubResource("RectangleShape2D_ryrav")
 
-[node name="StageWallRight" type="StaticBody2D" parent="Map/StageWalls" unique_id=956294161]
-position = Vector2(930, 48)
+[node name="StageWallRight" type="StaticBody2D" parent="Map/StageWalls" unique_id=2113224557]
+position = Vector2(1136, 32)
 
-[node name="SideCurtainRightSprite" type="Sprite2D" parent="Map/StageWalls/StageWallRight" unique_id=1450737970]
-position = Vector2(-55, -135)
-scale = Vector2(0.6, 0.65)
+[node name="SideCurtainSprite" type="Sprite2D" parent="Map/StageWalls/StageWallRight" unique_id=1818966420]
+position = Vector2(-59, -208)
+scale = Vector2(0.66, 0.69327253)
 texture = ExtResource("5_dinhu")
 flip_h = true
 
-[node name="StageWallRightRect" type="CollisionShape2D" parent="Map/StageWalls/StageWallRight" unique_id=992765253]
-position = Vector2(-1.25, 34.375)
+[node name="StageWallRect" type="CollisionShape2D" parent="Map/StageWalls/StageWallRight" unique_id=459017133]
+position = Vector2(0, -58.5)
 shape = SubResource("RectangleShape2D_ryrav")
 
 [node name="SpawnPoints" type="Node2D" parent="Map" unique_id=713882751]
@@ -79,8 +83,8 @@ position = Vector2(-300, 300)
 position = Vector2(300, 300)
 
 [node name="Camera" type="Camera2D" parent="." unique_id=4571859]
-offset = Vector2(0, 20)
-zoom = Vector2(1.2, 1.2)
+offset = Vector2(0, -75)
+limit_enabled = false
 limit_left = -875
 limit_top = -1100
 limit_right = 875

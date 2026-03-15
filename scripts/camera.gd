@@ -6,10 +6,11 @@ extends Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var stage_size = stage_sprite.texture.get_size() * stage_body.scale
+	var stage_width = stage_sprite.texture.get_size().x * stage_sprite.scale.x
 	
-	limit_left = -stage_size.x * 0.5
-	limit_right = stage_size.x * 0.5
+	limit_enabled = true
+	limit_left = -stage_width * 0.5
+	limit_right = stage_width * 0.5
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -19,10 +20,11 @@ func _process(_delta: float) -> void:
 		return
 	
 	var player_collider = players_in_level[0].get_node_or_null("PlayerCollider")
+	
 	if player_collider == null:
 		return
 
-	var player_buffer = player_collider.shape.size.x * 2
+	var player_buffer = player_collider.shape.size.x * 0.5
 	var screen_left = global_position.x - (Globals.WINDOW_WIDTH * 0.5) + player_buffer
 	var screen_right = global_position.x + (Globals.WINDOW_WIDTH * 0.5) - player_buffer
 
